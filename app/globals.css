@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --terminal-black: #000000;
+  --terminal-dark: #0A0A0A;
+  --terminal-border: #1A1A1A;
+  --terminal-accent: #2A2A2A;
+  --neon-emerald: #10B981;
+  --neon-crimson: #EF4444;
+  --neon-gold: #F59E0B;
+  --neon-blue: #3B82F6;
+  --neon-purple: #A855F7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--terminal-black);
+  color: #E5E7EB;
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--terminal-accent) var(--terminal-black);
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--terminal-black);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--terminal-accent);
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-emerald);
+}
+
+/* Custom selection */
+::selection {
+  background: var(--neon-emerald);
+  color: var(--terminal-black);
+}
+
+/* Glow effects */
+.glow-emerald {
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.glow-crimson {
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.glow-gold {
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+/* Terminal scan line effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.scanline::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.1), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image: 
+    linear-gradient(to right, var(--terminal-border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--terminal-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-animation {
+  animation: ticker 30s linear infinite;
+}
+
+/* Price pulse */
+@keyframes price-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.price-update {
+  animation: price-pulse 0.5s ease-in-out;
+}
+
+/* Loading shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    to right,
+    var(--terminal-dark) 0%,
+    var(--terminal-accent) 50%,
+    var(--terminal-dark) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-emerald);
+}
+
+/* Number font variant */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Backdrop blur */
+.backdrop-blur-terminal {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.8);
+}
