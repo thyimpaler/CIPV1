@@ -168,6 +168,22 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Data provenance.
+          Prices are a real Binance websocket stream. Candlesticks, liquidation
+          levels and funding rates are Math.random() placeholders (see
+          lib/websocket.js fetchLiquidations/fetchFundingRate and
+          TradingChart generateSampleData). Mixing the two without saying so is
+          the problem: the real prices lend credibility to the invented parts,
+          and this page sits behind a bot labelled "Auto Trading". */}
+      <div className="border-b border-neon-gold/40 bg-neon-gold/10 px-6 py-3">
+        <p className="max-w-7xl mx-auto text-xs text-neon-gold">
+          <span className="font-bold">SIMULATED DATA — </span>
+          Live prices stream from Binance. Candlesticks, liquidation levels and
+          funding rates on this page are generated placeholders, not market data.
+          Trades are paper only: no orders are placed on any exchange.
+        </p>
+      </div>
+
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8">
         {/* Active Trades */}
@@ -186,7 +202,8 @@ export default function Home() {
             </h2>
             <p className="text-gray-400 text-center max-w-md mb-6">
               Automated trading system with AI-powered analysis. Start by adding coins to track.
-              The system will automatically calculate probability scores and grades based on real-time market data.
+              Probability scores and grades are calculated from the live Binance price stream; chart,
+              liquidation and funding figures are simulated placeholders.
             </p>
             <div className="flex items-center gap-3 text-sm text-gray-500 mb-4">
               <span>💡 Tip:</span>
